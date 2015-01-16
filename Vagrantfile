@@ -17,9 +17,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = [:host, "cookbooks"]
     chef.provisioning_path = "/vagrant-chef"
     chef.json = {
+       group: "vagrant",
+       user: {
+                  name: "vagrant",
+                },
+       git:{
+                  name: "appteamio",
+                  email: "jalil@appteam.io" 
+                  },
+       db: {
+              root_password: "iwantobelive",
+            }
     }
     chef.run_list = [
-      'recipe[crockpot::default]'
+      'recipe[crockpot::default]',
+      'recipe[crockpot::nodejs]',
+      'recipe[crockpot::rbenv]',
+      'recipe[crockpot::mysql]',
+      'recipe[crockpot::php]',
+      'recipe[crockpot::gitconf]',
+      'recipe[crockpot::sshconf]'
     ]
   end
 end
