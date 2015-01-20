@@ -7,7 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = 'latest'
   config.vm.box = 'ubuntu/trusty64'
   config.vm.network :private_network, type: 'dhcp'
-    config.vm.network "private_network", ip: "192.168.50.20"
+    config.vm.network "private_network", ip: "192.168.50.22"
   config.vm.synced_folder "./data", "/data"
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
        group: "vagrant",
        user: {
                   name: "vagrant",
+                  email: "jalil@appteam.io" 
                 },
        git:{
                   name: "appteamio",
